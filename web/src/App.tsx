@@ -1,10 +1,13 @@
 import React from 'react'
+
+import Landing from './pages/Landing'
+
 import './styles/normalize.css'
 import './styles/global.css'
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <Landing />
   );
 }
 
