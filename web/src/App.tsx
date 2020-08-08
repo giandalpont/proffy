@@ -1,6 +1,6 @@
 import React from 'react'
-import './styles/global.css'
 import './styles/normalize.css'
+import './styles/global.css'
 
 function App() {
   return (
