@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './styles.css'
-
 import backIcon from '../../assets/icon/back.svg'
 import logoImg from '../../assets/logo.svg'
+import './styles.css'
 
-function PageHeader() {
+interface PageHeaderProps {
+  title: string
+}
+
+
+const PageHeader: React.FC<PageHeaderProps> = (props) => {
   return (
     <header className="page-header">
       <div className="top-bar-container">
@@ -16,10 +20,10 @@ function PageHeader() {
         <img src={logoImg} alt="Proffy"/>
       </div>
       <div className="header-content">
-        <strong>Esses são os Proffy disponíveis.</strong>
+        <strong>{props.title}</strong>
       </div>
     </header>
   )
 }
 
-export default PageHeader
+export default PageHeader;
