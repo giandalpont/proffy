@@ -17,9 +17,12 @@ routes.post('/classes', async (request, response) => {
     subject, cost, 
     schedule
   } = request.body;
+
+  //  Ultizando transection para tratamento de erro de inserção, se acasso alguma tabela não iserir os dados coretamente
+  const trx = await db.transaction();
   
   // Inserindo na tabela users e pegando retorno
-  const insertedUserid = await db('users').insert({
+  const insertedUserid = await trx('users').insert({
     name, avatar, whatsapp, bio 
   });
 
@@ -27,10 +30,10 @@ routes.post('/classes', async (request, response) => {
   const user_id = insertedUserid[0];
 
   // salvando tabela relacionada e pegando retorno
-  const insertedClassesIds = await db('classes').insert({
+  const insertedClassesIds = await trx('classes').insert({
     subject, cost, user_id
   })
-
+ 
   // pegando id da classes inserida
   const class_id = insertedClassesIds[0];
 
@@ -45,7 +48,10 @@ routes.post('/classes', async (request, response) => {
   })
 
   // Salvando na tabela class_schedule
-  await db("class_schedule").insert(classSchedule)
+  await trx("class_schedule").insert(classSchedule)
+
+  //  vai fazer as alterações no banco de dados
+  await trx.commit();
 
   return response.send();
 })
