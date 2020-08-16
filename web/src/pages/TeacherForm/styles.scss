@@ -38,6 +38,14 @@
                 padding-bottom: 1.6rem;
                 border-bottom: 1px solid var(--color-line-in-white);
             }
+
+            .input-block + .textarea-block {
+                margin-top: 2.0rem  ;
+            }
+
+            .select-block + .input-block {
+                margin-top: 2.0rem  ;
+            }
         }
 
         footer {
